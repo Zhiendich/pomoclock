@@ -1,25 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import './App.css';
+import Header from './components/Header';
+import Pomoclock from './components/Pomoclock';
 
+
+export type TimeProps = {
+  work: [string, Dispatch<SetStateAction<string>>],
+  shortBreak: [string, Dispatch<SetStateAction<string>>],
+  longBreak: [string, Dispatch<SetStateAction<string>>],
+}
+export const TimeContext = React.createContext({} as TimeProps);
 function App() {
+  const [work, setWork] = useState('20')
+  const [shortBreak, setShortBreak] = useState('2')
+  const [longBreak, setLongBreak] = useState('30')
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <TimeContext.Provider value={{ work: [work, setWork], shortBreak: [shortBreak, setShortBreak], longBreak: [longBreak, setLongBreak] }}>
+      <div className="flex flex-col items-center pt-4 ">
+        <Header />
+        <Pomoclock />
+      </div>
+    </TimeContext.Provider>
   );
 }
 
