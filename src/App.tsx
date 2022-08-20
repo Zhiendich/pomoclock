@@ -11,8 +11,8 @@ export type TimeProps = {
 }
 export const TimeContext = React.createContext({} as TimeProps);
 function App() {
-  const [work, setWork] = useState('20')
-  const [shortBreak, setShortBreak] = useState('2')
+  const [work, setWork] = useState('60')
+  const [shortBreak, setShortBreak] = useState('10')
   const [longBreak, setLongBreak] = useState('30')
   return (
     <TimeContext.Provider value={{ work: [work, setWork], shortBreak: [shortBreak, setShortBreak], longBreak: [longBreak, setLongBreak] }}>
